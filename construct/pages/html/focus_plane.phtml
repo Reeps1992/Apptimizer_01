@@ -1,0 +1,35 @@
+<div class="button-container">
+  <div class="action-button my-2">
+    <a href="index.php?p=modify_plane&table=plane&id=<?= $plane->getDataAbout('plane_id') ?>">Modifier</a>
+  </div>
+  <div class="action-button my-2">
+    <a href="index.php?p=add_plane&table=plane">Ajouter un Aeronef</a>
+  </div>
+</div>
+
+<div class="sub-content">
+  <h3 class="display-4">Immatriculation : <?= $plane->getDataAbout('immat') ?></h3>
+  <div>
+    <img src="../ressources/<?= $plane->getDataAbout('plane_img') ?>" class="mr-3" alt="#" style="width: 250px;">
+    <div>
+      <p>Type : <?= $plane->getDataAbout('type') ?></p>
+      <p>Nationalité : <?= $plane->getDataAbout('nationalite') ?></p>
+    </div>
+  </div>
+  <div>
+    <h5 class="my-3">Ordre(s) de travail relatif(s):</h5>
+    <ul>
+      <?php
+      $ot_list = $plane->getOtList($plane->getDataAbout('plane_id'));
+      foreach ($ot_list as $key => $value){
+        foreach ($value as $sub_key => $sub_value) {
+          echo '<li><a href="index.php?p=focus_ot&table=ot&id='.$sub_key.'">'.$sub_value.'</a></li>';
+        }
+      }
+      ?>
+
+    </ul>
+  </div>
+  <hr class="my-4">
+  <p>Propriétaire : <a href='index.php?p=focus_customer&table=customers&id=<?= $plane->getDataAbout('customer_id') ?>'><?= $plane->getOwner() ?></a></p>
+</div>

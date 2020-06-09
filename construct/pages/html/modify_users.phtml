@@ -1,0 +1,36 @@
+<div class="button-container">
+  <div class="action-button back my-2">
+    <button type="button" action="action" onclick="history.go(-1)">Retour</button>
+  </div>
+  <div class="action-button my-2">
+    <a href="index.php?p=add_users&table=users">Ajouter un Employé</a>
+  </div>
+</div>
+
+<p class="m-3">Modification : </p>
+
+<form class="form my-3" action="../pages/modify_valid_users.php" method="post">
+  <?php
+
+  echo $form->modify_input('id', 'hidden', $id);
+
+  echo $form->label('firstname', 'Prénom');
+  echo $form->modify_input('firstname', 'text', $user->getDataAbout('firstname'));
+
+  echo $form->label('lastname', 'Nom de famille');
+  echo $form->modify_input('lastname', 'text', $user->getDataAbout('lastname'));
+
+  echo $form->label('birthdate', 'Date de naissance');
+  echo $form->modify_input('birthdate', 'date', $user->getDataAbout('birthdate'));
+
+  echo $form->label('skill_date', 'Date d\'habilitation');
+  echo $form->modify_input('skill_date', 'date', $user->getDataAbout('skill_date'));
+
+
+  ?>
+
+  <div class="mb-4"></div>
+
+  <?= $form->submit() ?>
+
+</form>

@@ -1,0 +1,44 @@
+<div class="button-container">
+  <div class="action-button back my-2">
+    <button type="button" action="action" onclick="history.go(-1)">Retour</button>
+  </div>
+  <div class="action-button my-2">
+    <a href="index.php?p=add_supplier&table=supplier">Ajouter un Fournisseur</a>
+  </div>
+</div>
+
+<p class="m-3">Modification : </p>
+
+<form class="form my-3" action="../pages/modify_valid_supplier.php" method="post">
+  <?php
+
+  echo $form->modify_input('id', 'hidden', $id);
+
+  echo $form->label('company', 'Fournisseur');
+  echo $form->modify_input('company', 'text', $supplier->getDataAbout('company'));
+
+  echo $form->label('phone', 'Téléphone');
+  echo $form->modify_input('phone', 'text', $supplier->getDataAbout('phone'));
+
+  echo $form->label('email', 'Email');
+  echo $form->modify_input('email', 'text', $supplier->getDataAbout('email'));
+
+  echo $form->label('adress', 'Adresse');
+  echo $form->modify_input('adress', 'text', $supplier->getDataAbout('adress'));
+
+  echo $form->label('zip_code', 'Code postal');
+  echo $form->modify_input('zip_code', 'text', $supplier->getDataAbout('zip_code'));
+
+  echo $form->label('city', 'Ville');
+  echo $form->modify_input('city', 'text', $supplier->getDataAbout('city'));
+
+  echo $form->label('country', 'Pays');
+  echo $form->modify_input('country', 'text', $supplier->getDataAbout('country'));
+
+  ?>
+
+  <div class="mb-4"></div>
+
+  <?= $form->submit() ?>
+
+</form>

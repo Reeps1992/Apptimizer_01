@@ -1,0 +1,19 @@
+<div class="button-container">
+  <div class="action-button my-2">
+    <a href="index.php?p=add_users&table=users">Ajouter un Employé</a>
+  </div>
+</div>
+
+<table class="table table-striped table-bordered">
+
+      <?= Table::colTitle(['Nom' ,Table::sort('last_connexion_date','Dernière connexion',$_GET)]); ?>
+
+  <tbody>
+    <?php foreach ($table->getData() as $key => $value): ?>
+      <tr>
+        <td><a href="index.php?p=focus_users&table=users&id=<?= $value->user_id ?>"><?= $value->firstname ." ".$value->lastname; ?></a></td>
+        <td><?= $value->last_connexion_date; ?></td>
+      </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table>

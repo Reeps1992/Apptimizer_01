@@ -1,0 +1,32 @@
+<div class="button-container">
+  <div class="action-button back my-2">
+    <button type="button" action="action" onclick="history.go(-1)">Retour</button>
+  </div>
+</div>
+
+<p class="m-3">Enregistrer un nouvel item: </p>
+<div class="app-form">
+  <form class="form m-3" action="../pages/add_valid_items.php" method="post">
+    <?php
+
+    echo $form->label('part_number', 'P/N');
+    echo $form->input('part_number', 'text');
+
+    echo $form->label('designation', 'Désignation');
+    echo $form->input('designation', 'text');
+
+    echo $form->label('serial_number_item', 'Numéro de série');
+    echo $form->input('serial_number_item', 'text');
+
+    ?>
+
+    <label for="company">Fournisseur</label>
+    <input class="form-control ui-widget" id="company-autocomplete" type="text" name="company"></input>
+
+    <div class="mb-3"></div>
+
+    <?=$form->submit()?>
+
+  </form>
+  <script src="js/complete_supplier_input.js"></script>
+</div>

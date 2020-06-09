@@ -1,0 +1,53 @@
+<div class="button-container">
+  <div class="action-button back my-2">
+    <button type="button" action="action" onclick="history.go(-1)">Retour</button>
+  </div>
+  <div class="action-button my-2">
+    <a href="index.php?p=add_plane&table=plane">Ajouter un Aeronef</a>
+  </div>
+</div>
+
+<p class="m-3">Modification : </p>
+
+<form class="form my-3" action="../pages/modify_valid_plane.php" method="post" enctype="multipart/form-data">
+  <?php
+
+  echo $form->modify_input('id', 'hidden', $id);
+
+  echo $form->label('immat', 'Immatriculation');
+  echo $form->modify_input('immat', 'text', $plane->getDataAbout('immat'));
+
+  echo $form->label('serial_number_plane', 'Numéro de série');
+  echo $form->modify_input('serial_number_plane', 'text', $plane->getDataAbout('serial_number_plane'));
+
+  echo $form->label('type', 'Type');
+  echo $form->modify_input('type', 'text', $plane->getDataAbout('type'));
+
+  echo $form->label('nationalite', 'Nationalité');
+  echo $form->modify_input('nationalite', 'text', $plane->getDataAbout('nationalite'));
+
+  echo $form->label('customer_fullname', 'Propriétaire');
+
+  ?>
+
+  <input class="form-control" id="customers" type="text" name="customer_fullname" value="<?= $plane->getOwner($plane->getDataAbout('customer_id')) ?>">
+
+  <div class="my-2">
+    <?php
+      echo $form->label('plane_img','Photo descriptive');;
+      echo $form->fileInput('plane_img');
+    ?>
+    <figure class="ml-4">
+      <figcaption class="mb-2">Actuellement:</figcaption>
+      <img src="<?php echo $plane->getDataAbout('plane_img') ?>"
+           alt="<?php echo $plane->getDataAbout('immat') ?>"
+           width="400px">
+    </figure>
+  </div>
+
+  <div class="mb-4"></div>
+
+  <?= $form->submit() ?>
+
+</form>
+<script src="../public/js/complete_customer_input.js" charset="utf-8"></script>

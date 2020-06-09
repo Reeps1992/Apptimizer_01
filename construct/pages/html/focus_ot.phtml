@@ -1,0 +1,48 @@
+<div class="button-container">
+  <div class="action-button my-2">
+    <a href="index.php?p=modify_ot&table=ot&id=<?= $ot->getDataAbout('ot_id') ?>">Modifier</a>
+  </div>
+  <div class="action-button my-2">
+    <a href="index.php?p=add_ot&table=ot">Ajouter un OT</a>
+  </div>
+</div>
+
+<div class="sub-content">
+  <h3 class="display-4 mb-4">Ot Number : <?= $ot->getDataAbout('number_ot') ?></h3>
+  <div>
+    <div>
+      <p><u>Titre</u> : <?= $ot->getDataAbout('title') ?></p>
+      <p><u>Etat</u> : <?= $ot->getState() ?></p>
+      <p><u>Date de Début</u> : <?= $ot->getDataAbout('start_date') ?></p>
+      <p><u>Date de Fin</u> : <?= $ot->getDataAbout('end_date') ?></p>
+    </div>
+  </div>
+  <hr class="my-4">
+  <div>
+    <h5 class="mb-2">Aeronef concerné: </h5>
+    <ul>
+      <?php
+      $plane_list = explode(',', $ot->getDataAbout('plane_list'));
+       foreach ($plane_list as $key => $value){
+         $query = ot_rq_plane_list($value);
+         $result = request_fetch($query);
+         echo '<li><a href="index.php?p=focus_plane&table=plane&id='.$value.'">'.$result['immat'].'</a></li>';
+       };
+       ?>
+    </ul>
+    <h5 class="mb-2">Item(s) concerné(s): </h5>
+    <ul>
+      <?php
+      $item_list = explode(',', $ot->getDataAbout('item_list'));
+      foreach ($item_list as $key => $value) {
+        $query = ot_rq_item_list($value);
+        $result = request_fetch($query);
+        echo '<li><a href="index.php?p=focus_items&table=items&id='.$value.'">'.$result['part_number'].'</a></li>';
+      }
+      ?>
+    </ul>
+  </div>
+  <hr class="my-4">
+  <h5>Commentaire: </h5>
+  <p><?= $ot->getDataAbout('comment') ?></p>
+</div>

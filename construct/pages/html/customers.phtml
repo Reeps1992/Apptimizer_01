@@ -1,0 +1,20 @@
+<div class="button-container">
+  <div class="action-button my-2">
+    <a href="index.php?p=add_customers&table=customers">Ajouter un Client</a>
+  </div>
+</div>
+
+<table class="table table-striped table-bordered">
+
+      <?= Table::colTitle(['Nom' ,Table::sort('city','Ville',$_GET), 'Téléphone']); ?>
+
+  <tbody>
+    <?php foreach ($table->getData() as $key => $value): ?>
+      <tr>
+        <td><a href="index.php?p=focus_customer&table=customers&id=<?= $value->customer_id ?>"><?= $value->firstname ." ".$value->lastname; ?></a></td>
+        <td><?= $value->city; ?></td>
+        <td>0<?= $value->phone; ?></td>
+      </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table>

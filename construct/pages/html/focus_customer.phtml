@@ -1,0 +1,24 @@
+<div class="button-container">
+  <div class="action-button my-2">
+    <a href="index.php?p=modify_customers&table=customer&id=<?= $customer->getDataAbout('customer_id') ?>">Modifier</a>
+  </div>
+</div>
+
+<div class="sub-content">
+  <h3 class="display-4 mb-4">Client : <?=  $customer->getDataAbout('fullname') ?></h3>
+  <div>
+    <div>
+      <p><u>Adresse</u> : <?=  $customer->getDataAbout('adress').', '.$customer->getDataAbout('city').', '.$customer->getDataAbout('zip_code') ?></p>
+    </div>
+  </div>
+  <hr class="my-4">
+  <div>
+    <h5 class="mb-2">Appareil(s):</h5>
+      <?php foreach ($customer->getById('*', 'plane', 'customer_id') as $value): ?>
+        <p><a href="index.php?p=focus_plane&table=plane&id=<?= $value->plane_id ?>"><?= $value->immat ?></a></p>
+      <?php endforeach; ?>
+  </div>
+  <hr class="my-4">
+  <p><u>Email</u> : <?=  $customer->getDataAbout('email') ?></p>
+  <p><u>Téléphone</u> : <?=  $customer->getDataAbout('phone') ?></p>
+</div>

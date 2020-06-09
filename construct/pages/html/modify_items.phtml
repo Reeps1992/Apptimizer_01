@@ -1,0 +1,37 @@
+<div class="button-container">
+  <div class="action-button back my-2">
+    <button type="button" action="action" onclick="history.go(-1)">Retour</button>
+  </div>
+  <div class="action-button my-2">
+    <a href="index.php?p=add_items&table=items">Ajouter un Item</a>
+  </div>
+</div>
+
+<p class="m-3">Modification : </p>
+
+<form class="form my-3" action="../pages/modify_valid_items.php" method="post">
+  <?php
+
+  echo $form->modify_input('id', 'hidden', $id);
+
+  echo $form->label('designation', 'Désignation');
+  echo $form->modify_input('designation', 'text', $item->getDataAbout('designation'));
+
+  echo $form->label('part_number', 'Part Number');
+  echo $form->modify_input('part_number', 'text', $item->getDataAbout('part_number'));
+
+  echo $form->label('serial_number_item', 'Numéro de série');
+  echo $form->modify_input('serial_number_item', 'text', $item->getDataAbout('serial_number_item'));
+
+  echo $form->label('company', 'Fournisseur');
+
+  ?>
+
+  <input class="form-control" id="company-autocomplete" type="text" name="company" value="<?= $item->getSupplier($item->getDataAbout('supplier_id')) ?>">
+
+  <div class="mb-4"></div>
+
+  <?= $form->submit() ?>
+
+</form>
+<script src="../public/js/complete_supplier_input.js" charset="utf-8"></script>

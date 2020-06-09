@@ -1,0 +1,21 @@
+<div class="button-container">
+  <div class="action-button my-2">
+    <a href="index.php?p=add_plane&table=plane">Ajouter un Aeronef</a>
+  </div>
+</div>
+
+<table class="table table-striped table-bordered">
+
+      <?= Table::colTitle([Table::sort('immat','Immatriculation', $_GET),'Numéro de série' ,Table::sort('type','Type', $_GET), 'Nationalité']); ?>
+
+  <tbody>
+    <?php foreach ($table->getData() as $key => $value): ?>
+      <tr>
+        <td><a href="index.php?p=focus_plane&table=plane&id=<?= $value->plane_id ?>"><?= $value->immat; ?></a></td>
+        <td><?= $value->serial_number_plane; ?></td>
+        <td><?= $value->type; ?></td>
+        <td><?= $value->nationalite; ?></td>
+      </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table>

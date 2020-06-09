@@ -1,0 +1,45 @@
+<div class="button-container">
+  <div class="action-button back my-2">
+    <button type="button" action="action" onclick="history.go(-1)">Retour</button>
+  </div>
+  <div class="action-button my-2">
+    <a href="index.php?p=add_customers&table=customers">Ajouter un Client</a>
+  </div>
+</div>
+
+<p class="m-3">Modification : </p>
+
+<form class="form my-3" action="../pages/modify_valid_customers.php" method="post">
+  <?php
+
+  echo $form->modify_input('id', 'hidden', $id);
+
+  echo $form->label('firstname', 'Prénom');
+  echo $form->modify_input('firstname', 'text', $customer->getDataAbout('firstname'));
+
+  echo $form->label('lastname', 'Nom de famille');
+  echo $form->modify_input('lastname', 'text', $customer->getDataAbout('lastname'));
+
+  echo $form->label('email', 'Email');
+  echo $form->modify_input('email', 'text', $customer->getDataAbout('email'));
+
+  echo $form->label('phone', 'Téléphone');
+  echo $form->modify_input('phone', 'text', $customer->getDataAbout('phone'));
+
+  echo $form->label('adress', 'Adresse');
+  echo $form->modify_input('adress', 'text', $customer->getDataAbout('adress'));
+
+  echo $form->label('zip_code', 'Code postal');
+  echo $form->modify_input('zip_code', 'text', $customer->getDataAbout('zip_code'));
+
+  echo $form->label('city', 'Ville');
+  echo $form->modify_input('city', 'text', $customer->getDataAbout('city'));
+
+
+  ?>
+
+  <div class="mb-4"></div>
+
+  <?= $form->submit() ?>
+
+</form>

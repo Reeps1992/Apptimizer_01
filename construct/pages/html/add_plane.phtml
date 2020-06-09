@@ -1,0 +1,29 @@
+<div class="button-container">
+  <div class="action-button back my-2">
+    <button type="button" action="action" onclick="history.go(-1)">Retour</button>
+  </div>
+</div>
+
+<p class="m-3">Enregistrer un nouvel appareil: </p>
+<div class="app-form">
+  <form class="form m-3" action="../pages/add_valid_plane.php" method="post" enctype="multipart/form-data">
+    <?php
+    foreach ($form->getData() as $key => $value) {
+      echo $form->label($key, $value['name']);
+      echo $form->input($key, $value['type']);
+    }
+
+    echo $form->label('plane_img','Photo descriptive');;
+    echo $form->fileInput('plane_img');
+
+    ?>
+
+    <label for="customer_fullname">Propriétaire</label>
+    <input class="form-control" id="customers" type="text" name="customer_fullname" value=""></input>
+
+    <div class="my-2"></div>
+
+    <?php echo $form->submit(); ?>
+  </form>
+  <script src="js/complete_customer_input.js"></script>
+</div>

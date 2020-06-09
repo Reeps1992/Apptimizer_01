@@ -1,0 +1,68 @@
+<div class="button-container">
+  <div class="action-button back my-2">
+    <button type="button" action="action" onclick="history.go(-1)">Retour</button>
+  </div>
+  <div class="action-button my-2">
+    <a href="index.php?p=add_ot&table=ot">Ajouter un OT</a>
+  </div>
+</div>
+
+<p class="m-3">Modification : </p>
+
+<form class="form my-3" action="../pages/modify_valid_ot.php" method="post">
+  <?php
+
+  echo $form->modify_input('id', 'hidden', $id);
+
+  echo $form->label('number_ot', 'Numéro d\'ot');
+  echo $form->modify_input('number_ot', 'text', $ot->getDataAbout('number_ot'));
+
+  echo $form->label('title', 'Titre');
+  echo $form->modify_input('title', 'text', $ot->getDataAbout('title'));
+
+  echo $form->label('comment', 'Commentaire');
+  echo $form->modify_input('comment', 'text', $ot->getDataAbout('comment'));
+
+  echo $form->label('start_date', 'Date de début');
+  echo $form->modify_input('start_date', 'date', $ot->getDataAbout('start_date'));
+
+  echo $form->label('end_date', 'Date de fin');
+  echo "<input class='form-control' type='date' name='end_date' value='".$ot->getDataAbout('end_date')."' required/>";
+
+  echo $form->label('archive', 'Stockage');
+  echo $form->modify_input('archive', 'text', $ot->getDataAbout('archive'));
+
+  $planes = explode(',', $ot->getDataAbout('plane_list'));
+  $count_plane = count($planes);
+  echo $form->modify_input('count_plane', 'hidden', $count_plane);
+  echo '<p class="mb-2">Liste des aeronefs:</p>';
+  foreach ($planes as $key => $value) {
+    $query = ot_rq_plane_list($value);
+    $result = request_fetch($query);
+    echo $form->modify_input('plane'.$key, 'text', $result['immat']);
+  };
+
+  $items = explode(',', $ot->getDataAbout('item_list'));
+  $count_item = count($items);
+  echo $form->modify_input('count_item', 'hidden', $count_item);
+  echo '<p class="mb-2">Liste des items utilisés:</p>';
+  foreach ($items as $key => $value) {
+    $query = ot_rq_item_list($value);
+    $result = request_fetch($query);
+    echo $form->modify_input('item'.$key, 'text', $result['part_number']);
+  };
+
+  ?>
+
+  <?php echo $form->label('state', 'Etat : '.$ot->getState()) ?>
+  <select class="form-control" name="state">
+    <option value="0">En cours</option>
+    <option value="1">Fermé</option>
+  </select>
+
+  <div class="mb-4"></div>
+
+  <?= $form->submit() ?>
+
+
+</form>

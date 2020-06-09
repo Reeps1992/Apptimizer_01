@@ -1,0 +1,21 @@
+<div class="button-container">
+  <div class="action-button my-2">
+    <a href="index.php?p=add_ot&table=ot">Ajouter un OT</a>
+  </div>
+</div>
+
+<table class="table table-striped table-bordered">
+
+      <?= Table::colTitle([Table::sort('number_ot','Numéro OT',$_GET), 'Intitulé' ,'Date de début', 'Etat']); ?>
+
+  <tbody>
+    <?php foreach ($table->getData() as $key => $value): ?>
+      <tr>
+        <td><a href='index.php?p=focus_ot&table=ot&id=<?= $value->ot_id ?>'><?= $value->number_ot; ?></a></td>
+        <td><?= $value->title; ?></td>
+        <td><?= $value->start_date; ?></td>
+        <td><?= $value->state; ?></td>
+      </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table>

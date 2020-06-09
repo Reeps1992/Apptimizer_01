@@ -1,0 +1,35 @@
+<div class="button-container">
+  <div class="action-button my-2">
+    <a href="index.php?p=modify_items&table=items&id=<?= $item->getDataAbout('item_id') ?>">Modifier</a>
+  </div>
+  <div class="action-button my-2">
+    <a href="index.php?p=add_items&table=items">Ajouter un Item</a>
+  </div>
+</div>
+
+<div class="sub-content">
+  <h3 class="display-4 mb-4">Part Number : <?= $item->getDataAbout('part_number') ?></h3>
+  <div>
+    <div>
+      <p><u>Désignation</u> : <?= $item->getDataAbout('designation') ?></p>
+      <p><u>Numéro de série</u> : <?= $item->getDataAbout('serial_number_item') ?></p>
+    </div>
+  </div>
+  <hr class="my-4">
+  <div class="">
+    <h5 class="mb-2">Ordre(s) de travail relatif(s):</h5>
+    <ul>
+      <?php
+      $ot_list = $item->getOtList($item->getDataAbout('item_id'));
+      foreach ($ot_list as $key => $value){
+        foreach ($value as $sub_key => $sub_value) {
+          echo '<li><a href="index.php?p=focus_ot&table=ot&id='.$sub_key.'">'.$sub_value.'</a></li>';
+        }
+      }
+      ?>
+
+    </ul>
+  </div>
+  <hr class="my-4">
+  <p><u>Fournisseur</u> : <?= $item->getSupplier($item->getDataAbout('supplier_id')) ?></p>
+</div>
