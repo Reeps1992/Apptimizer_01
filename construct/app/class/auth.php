@@ -4,9 +4,6 @@ include 'functions.php';
 $Login = htmlspecialchars($_POST['Login']);
 $Password = MD5(htmlspecialchars($_POST['Password']));
 
-var_dump($Login);
-var_dump($Password);
-
 $query = "SELECT * FROM login WHERE identifiant = '".$Login."' and password = '".$Password."'";
 
 if(request_fetch($query)){
