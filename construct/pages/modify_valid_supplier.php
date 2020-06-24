@@ -14,7 +14,7 @@ $zip_code = $_POST['zip_code'];
 $city = strtoupper($_POST['city']);
 $country = strtoupper($_POST['country']);
 
-$query = "UPDATE $table
+$query = "UPDATE supplier
           SET company = ?,
               adress = ?,
               email = ?,

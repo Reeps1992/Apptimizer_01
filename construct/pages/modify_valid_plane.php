@@ -22,11 +22,10 @@ if($_FILES['plane_img']['size'] !== '0' && $_FILES['plane_img']['size'] <= '1000
 
   $folder = FolderHelper::get_plane_path1().'/'.$immat.'/DESCRIPTION_IMG';
   $file = $folder.'/'.basename($_FILES['plane_img']['name']);
-  echo $file;
 
   if(FolderHelper::upload($_FILES['plane_img'],$folder)){
     // photo est uploadée
-    $query = "UPDATE $table
+    $query = "UPDATE plane
     SET immat = ?,
         serial_number_plane = ?,
         type = ?,
@@ -36,15 +35,13 @@ if($_FILES['plane_img']['size'] !== '0' && $_FILES['plane_img']['size'] <= '1000
     WHERE plane_id = ?";
     $statement = $pdo->prepare($query);
     try {
-      echo "ici";
-      var_dump($statement);
       $statement->execute([htmlspecialchars($immat), htmlspecialchars($serial_number_plane), htmlspecialchars($type), htmlspecialchars($nationalite), $file ,htmlspecialchars($customer_id), htmlspecialchars($id)]);
     } catch (Exception $e) {
       echo $e -> getMessage(), "\n";
     }
   }else{
     // non uploadé
-    $query = "UPDATE $table
+    $query = "UPDATE plane
     SET immat = ?,
         serial_number_plane = ?,
         type = ?,
@@ -53,15 +50,14 @@ if($_FILES['plane_img']['size'] !== '0' && $_FILES['plane_img']['size'] <= '1000
     WHERE plane_id = ?";
     $statement = $pdo->prepare($query);
     try {
-      var_dump($statement);
       $statement->execute([htmlspecialchars($immat), htmlspecialchars($serial_number_plane), htmlspecialchars($type), htmlspecialchars($nationalite), htmlspecialchars($customer_id), htmlspecialchars($id)]);
     } catch (Exception $e) {
       echo $e -> getMessage(), "\n";
     }
-    echo "là";
+
   }
 }else{
-  $query = "UPDATE $table
+  $query = "UPDATE plane
   SET immat = ?,
       serial_number_plane = ?,
       type = ?,
@@ -70,8 +66,6 @@ if($_FILES['plane_img']['size'] !== '0' && $_FILES['plane_img']['size'] <= '1000
   WHERE plane_id = ?";
   $statement = $pdo->prepare($query);
   try {
-    echo "here";
-    var_dump($statement);
     $statement->execute([htmlspecialchars($immat), htmlspecialchars($serial_number_plane), htmlspecialchars($type), htmlspecialchars($nationalite), htmlspecialchars($customer_id), htmlspecialchars($id)]);
   } catch (Exception $e) {
     echo $e -> getMessage(), "\n";

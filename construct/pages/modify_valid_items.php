@@ -15,7 +15,7 @@ $query_customer_id = "SELECT supplier_id FROM supplier WHERE company = '$company
 $result = request_fetch($query_customer_id);
 $supplier_id = $result['supplier_id'];
 
-$query = "UPDATE $table
+$query = "UPDATE items
           SET part_number = ?,
               serial_number_item = ?,
               designation = ?,

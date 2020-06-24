@@ -1,8 +1,8 @@
 <?php
 
- $dsn = 'mysql:dbname=apptimizer;host=****;port=****;';
- $user = '****';
- $password = '****';
+ $dsn = 'mysql:dbname=apptimizer_siba;host=localhost;port=3307;';
+ $user = 'root';
+ $password = '';
 
  try {
      $pdo = new PDO($dsn, $user, $password, [

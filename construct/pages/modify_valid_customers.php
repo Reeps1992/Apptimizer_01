@@ -15,7 +15,7 @@ $zip_code = $_POST['zip_code'];
 $city = strtoupper($_POST['city']);
 $fullname = $firstname.' '.$lastname;
 
-$query = "UPDATE $table
+$query = "UPDATE customers
           SET firstname = ?,
               lastname = ?,
               email = ?,

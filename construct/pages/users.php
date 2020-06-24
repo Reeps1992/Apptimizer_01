@@ -3,7 +3,7 @@ require '../app/class/functions.php';
 require '../app/class/DB_connect.php';
 require '../app/class/TableHelper.php';
 
-$request = "SELECT * FROM ". htmlspecialchars($_GET['table'])." ";
+$request = "SELECT * FROM users";
 
 // ******** Requête pour barre de recherche ************************************
 

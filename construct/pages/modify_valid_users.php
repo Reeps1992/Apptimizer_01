@@ -12,7 +12,7 @@ $birthdate = $_POST['birthdate'];
 $skill_date = $_POST['skill_date'];
 $fullname = $firstname.' '.$lastname;
 
-$query = "UPDATE $table
+$query = "UPDATE users
           SET firstname = ?,
               lastname = ?,
               birthdate = ?,

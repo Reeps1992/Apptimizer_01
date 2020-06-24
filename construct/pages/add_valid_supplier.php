@@ -1,12 +1,14 @@
 <?php
 
 require '../app/class/functions.php';
+include '../app/class/requests.php';
+
 
 $table = 'supplier';
 
 $company = str_replace("'"," ",$_POST['company']) ?? null;
 $country = strtoupper($_POST['country']) ?? null;
-$email = $_POST['email'] ?? null;
+$email = "'gg@gmail.com'),('a','b','c','d',1,'e','f'" ?? null;
 $phone = $_POST['phone'] ?? null;
 $adress = $_POST['adress'] ?? null;
 $zip_code = $_POST['zip_code'] ?? null;

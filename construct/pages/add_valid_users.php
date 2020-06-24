@@ -1,5 +1,8 @@
 <?php
 
+include '../app/class/requests.php';
+
+
 $table = 'users';
 
 $firstname = str_replace("'"," ",$_POST['firstname']) ?? null;

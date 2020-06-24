@@ -1,5 +1,7 @@
 <?php
 
+include '../app/class/requests.php';
+
 $table = 'customers';
 
 $firstname = str_replace("'"," ",$_POST['firstname']) ?? null;
@@ -26,7 +28,7 @@ foreach ($check_list as $value) {
 
 if($check_bool === true){
   require '../app/class/DB_connect.php';
-  $query = "INSERT INTO $table (firstname, lastname, email, phone, adress, zip_code, city, fullname) VALUES (?, ?, ?, ?, ?, ?, UPPER(?), ?)";
+  $query = $insert_customer_request;
   $statement = $pdo->prepare($query);
   try {
     $statement->execute([ucfirst(htmlspecialchars($firstname)), ucfirst(htmlspecialchars($lastname)), htmlspecialchars($email), htmlspecialchars($phone), htmlspecialchars($adress), htmlspecialchars($zip_code), htmlspecialchars($city), htmlspecialchars(ucfirst($firstname).' '.ucfirst($lastname))]);

@@ -2,6 +2,8 @@
 
 require '../app/class/functions.php';
 require '../app/class/FolderHelper.class.php';
+include '../app/class/requests.php';
+
 
 $table = 'plane';
 
@@ -41,7 +43,7 @@ if($check_bool === true){
     echo $file;
     if(FolderHelper::upload($_FILES['plane_img'],$folder)){
       // photo est uploadée
-      $query = "INSERT INTO $table (immat, serial_number_plane, type, nationalite, plane_img, customer_id) VALUES (upper(?), ?, ?, upper(?),?,?)";
+      $query = $insert_plane_request1;
       $statement = $pdo->prepare($query);
       try {
         $statement->execute([htmlspecialchars($immat), htmlspecialchars($serial_number_plane), htmlspecialchars($type), htmlspecialchars($nationalite), $file ,htmlspecialchars($customer_id)]);
@@ -51,7 +53,7 @@ if($check_bool === true){
     }else{
     }
   }else {
-    $query = "INSERT INTO $table (immat, serial_number_plane, type, nationalite, customer_id) VALUES (upper(?), ?, ?, upper(?), ?)";
+    $query = $insert_plane_request2;
     $statement = $pdo->prepare($query);
     try {
       $statement->execute([htmlspecialchars($immat), htmlspecialchars($serial_number_plane), htmlspecialchars($type), htmlspecialchars($nationalite), htmlspecialchars($customer_id)]);

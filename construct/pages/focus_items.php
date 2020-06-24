@@ -1,4 +1,5 @@
 <?php
+
 require '../app/class/functions.php';
 require '../app/class/focusOn.php';
 require '../app/class/item.php';

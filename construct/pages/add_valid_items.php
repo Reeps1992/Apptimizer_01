@@ -1,6 +1,7 @@
 <?php
 
 require '../app/class/functions.php';
+include '../app/class/requests.php';
 
 $table = 'items';
 
@@ -12,7 +13,7 @@ $company = str_replace("'"," ",strtoupper($_POST['company'])) ?? null;
 $supplier_id_query = "SELECT supplier_id FROM supplier WHERE company = '$company'";
 $result = request_fetch($supplier_id_query);
 
-$supplier_id = $result ?? null;
+$supplier_id = $result ?? 8;
 
 $check_bool;
 
@@ -30,7 +31,7 @@ foreach ($check_list as $value) {
 
 if($check_bool === true){
   require '../app/class/DB_connect.php';
-  $query = "INSERT INTO $table (part_number, serial_number_item, designation, supplier_id) VALUES (?, ?, ?, ?)";
+  $query = $insert_item_request;
   $statement = $pdo->prepare($query);
   try {
     $statement->execute([htmlspecialchars($part_number), htmlspecialchars($serial_number_item), htmlspecialchars($designation), htmlspecialchars($supplier_id)]);

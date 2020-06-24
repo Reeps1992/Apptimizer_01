@@ -1,6 +1,7 @@
 <?php
 
 require "../app/class/functions.php";
+include '../app/class/requests.php';
 
 $table = 'ot';
 
@@ -50,7 +51,7 @@ foreach ($check_list as $value) {
 
 if($check_bool === true){
   require '../app/class/DB_connect.php';
-  $query = "INSERT INTO $table (number_ot, title, start_date, comment, plane_list, item_list, state) VALUES (UPPER(?), ?, ?, ?, ?, ?, 0)";
+  $query = $insert_ot_request;
   $statement = $pdo->prepare($query);
   try {
     $statement->execute([htmlspecialchars($number_ot), htmlspecialchars($title), htmlspecialchars($start_date), htmlspecialchars($comment), htmlspecialchars($plane_list), htmlspecialchars($item_list)]);

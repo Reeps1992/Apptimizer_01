@@ -44,7 +44,7 @@ for ($i=0; $i <= $_POST['count_item'] ;) {
 $item_list = (implode(',', $item_list));
 
 
-$query = "UPDATE $table
+$query = "UPDATE ot
           SET number_ot = ?,
               title = ?,
               comment = ?,
