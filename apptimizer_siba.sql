@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3307
--- Généré le :  mar. 09 juin 2020 à 10:17
--- Version du serveur :  10.3.14-MariaDB
--- Version de PHP :  7.2.18
+-- Généré le :  jeu. 25 juin 2020 à 14:40
+-- Version du serveur :  5.7.26
+-- Version de PHP :  7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `apptimizer`
+-- Base de données :  `apptimizer_siba`
 --
 
 -- --------------------------------------------------------
@@ -40,18 +40,19 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `city` varchar(255) NOT NULL,
   `fullname` varchar(255) NOT NULL,
   PRIMARY KEY (`customer_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `customers`
 --
 
 INSERT INTO `customers` (`firstname`, `lastname`, `customer_id`, `email`, `phone`, `adress`, `zip_code`, `city`, `fullname`) VALUES
-('Kévin', 'Conversin', 1, 'conversin.k.pro@gmail.com', 157896423, '86 rue petit champ', '44000', 'Nantes', 'Kévin Conversin'),
-('Ano', 'Nyme', 2, 'anonyme@gmail.com', 633289563, '12 Le Roch', '35190', 'TREVERIEN', 'Ano Nyme'),
+('Kévin', 'Conversin', 1, 'conversin.k.pro@gmail.com', 633276961, '8 La Roche', '35190', 'TREVERIEN', 'Kévin Conversin'),
+('Ano', 'Nyme', 2, 'anonyme@gmail.com', 633289563, '12 La Roche', '35190', 'TREVERIEN', 'Ano Nyme'),
 ('Bernard', 'L\'herrmite', 3, 'BL@gmail.com', 755274965, '27 rue Bourbignan', '22000', 'DINAN', 'Bernard L\'hermite'),
 ('Christophe', 'Jacquet', 4, 'cj@arobaz.com', 633276962, '8 Grand Place', '66000', 'LE MANS', 'Christophe Jacquet'),
-('Jean', 'Legor\'c', 5, 'jlg@gmail.com', 632353664, '158 les roboiries', '77500', 'POISSY', 'Jean Legor\'c');
+('Jean', 'Legor\'c', 5, 'jlg@gmail.com', 632353664, '158 les roboiries', '77500', 'POISSY', 'Jean Legor\'c'),
+('Rdgdr', 'Fdgd', 8, 'test@test.fr', 633276961, '8 la roche', '35190', 'QSDGSG', 'Rdgdr Fdgd');
 
 -- --------------------------------------------------------
 
@@ -67,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `designation` varchar(255) DEFAULT NULL,
   `supplier_id` int(100) DEFAULT NULL,
   PRIMARY KEY (`item_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `items`
@@ -78,7 +79,7 @@ INSERT INTO `items` (`item_id`, `part_number`, `serial_number_item`, `designatio
 (2, '74657', 'SDFG582545', 'Panneau de contrôle', 1),
 (3, '24555', 'WH369', 'ROUES CESSN X120', 1),
 (4, '58963', 'CBL25M', 'RELAIS DEPLOI X120', 1),
-(5, '000000', '000000', 'Inconnu', 8);
+(5, '000000', '000000', 'Inconnuu', 8);
 
 -- --------------------------------------------------------
 
@@ -98,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `login` (
 --
 
 INSERT INTO `login` (`identifiant`, `password`) VALUES
-('root', '63a9f0ea7bb98050796b649e85481845');
+('Randomidentifiant', '$2y$10$pDmBaDYnKAevigvC40w86uBSs7sCVqAij5Uqjg273B5h1Yuj5gv5S');
 
 -- --------------------------------------------------------
 
@@ -125,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `ot` (
   `easa_path` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ot_id`),
   UNIQUE KEY `number_ot` (`number_ot`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `ot`
@@ -133,7 +134,9 @@ CREATE TABLE IF NOT EXISTS `ot` (
 
 INSERT INTO `ot` (`ot_id`, `number_ot`, `title`, `start_date`, `end_date`, `comment`, `state`, `plane_list`, `archive`, `item_list`, `worker_list`, `img_path`, `pdf_path`, `crs_path`, `easa_path`) VALUES
 (7, 4569, 'test', '2020-03-01', '2020-03-31', 'balablalb', 0, '5', 'b35', '1', NULL, '../../DATA/OT/4569/IMG', '../../DATA/OT/4569/PDF', '../../DATA/OT/4569/CRS', '../../DATA/OT/4569/EASA'),
-(10, 78910, 'Remplacement de cablages', '2020-05-31', '2020-05-31', 'Masse défaillantes', 1, '1,7', 'B35', '5', NULL, '../../DATA/OT/78910/IMG', '../../DATA/OT/78910/PDF', '../../DATA/OT/78910/CRS', '../../DATA/OT/78910/EASA');
+(10, 78910, 'Remplacement de cablages', '2020-05-31', '2020-05-31', 'Masse défaillantes', 1, '1,7', 'B35', '5', NULL, '../../DATA/OT/78910/IMG', '../../DATA/OT/78910/PDF', '../../DATA/OT/78910/CRS', '../../DATA/OT/78910/EASA'),
+(15, 45375, 'dfnqfdhbd', '2020-06-16', NULL, 'swfbhsws', 0, '3', NULL, '3', NULL, NULL, NULL, NULL, NULL),
+(16, 74637, 'sdvbsdg', '2020-06-30', '2020-06-30', 'sgzsefg', 0, '1', '', '2', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -151,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `plane` (
   `nationalite` varchar(255) NOT NULL,
   `plane_img` varchar(255) DEFAULT 'default_plane.png',
   PRIMARY KEY (`plane_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `plane`
@@ -162,7 +165,10 @@ INSERT INTO `plane` (`plane_id`, `immat`, `serial_number_plane`, `customer_id`, 
 (2, 'G-ZFRB', '1598BFG', '1', 'PIPER M600', 'GB', 'default_plane.png'),
 (3, 'F-ARCG', '152ZEF', '1', 'CESSNA 182', 'FR', 'default_plane.png'),
 (5, 'OO-Y24', '5878EFC', '1', 'CIRRUS SR22', 'BE', 'default_plane.png'),
-(7, 'F-ZFOL', '5878XXXX', '2', 'AVIAT PITTS', 'FR', 'default_plane.png');
+(7, 'F-ZFOL', '5878XXXX', '2', 'AVIAT PITTS', 'FR', 'default_plane.png'),
+(18, 'REHGQ', 'sqfqzfe', '8', 'QZFQZEF', 'FE', '../../DATA/PLANES/rehgq/DESCRIPTION_IMG/Walter_Extra_300_SC,_Vigo.jpg'),
+(17, 'ZRHZQR', 'qgfqgd', '1', 'SQDFS', 'FR', 'default_plane.png'),
+(16, 'F-GZOH', 'qgeg', '1', 'CESSNA', 'FR', '../../DATA/PLANES/F-GZOH/DESCRIPTION_IMG/Walter_Extra_300_SC,_Vigo.jpg');
 
 -- --------------------------------------------------------
 
@@ -183,14 +189,14 @@ CREATE TABLE IF NOT EXISTS `supplier` (
   `country` varchar(255) NOT NULL,
   `indicatif` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`supplier_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `supplier`
 --
 
 INSERT INTO `supplier` (`supplier_id`, `name`, `adress`, `city`, `zip_code`, `email`, `phone`, `company`, `country`, `indicatif`) VALUES
-(1, 'Nicolas', '25 Hautpstrasse', 'Junginge', 72417, 'winter.instruments@yahoo.de', 7477262, 'GEBR. WINTER GMBH &amp; CO KG', 'Allemagne', '+0049'),
+(1, 'Nicolas', '25 Hautpstrasse', 'JUNGINGE', 72417, 'winter.instruments@yahoo.de', 7477262, 'GEBR WINTER GMBH CO KG', 'ALLEMAGNE', '+0049'),
 (3, NULL, '8 Kugelstrass', 'METZ', 57000, 'contact@safrangroup.fr', 299732199, 'SAFRAN GROUP', 'FRANCE', '0'),
 (8, NULL, 'none', 'NONE', 111111, 'none@none.none', 1111111, 'INCONNU', 'NONE', NULL),
 (7, NULL, '158 av G. de Gaulle', 'LILLE', 59000, 'contact@seam.avionique.fr', 548786512, 'SEAM AVIONIQUE', 'FRANCE', NULL);
@@ -207,19 +213,19 @@ CREATE TABLE IF NOT EXISTS `users` (
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   `birthdate` date NOT NULL,
-  `last_connexion_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `last_connexion_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `skill_date` date NOT NULL,
   `fullname` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `birthdate`, `last_connexion_date`, `skill_date`, `fullname`, `email`) VALUES
-(1, 'Perrin', 'Bridou', '1984-11-04', '2020-05-05 15:49:21', '2019-12-31', 'Perrin Bridou', 'p.bridou@gmail.com');
+(1, 'Perrin', 'Bridou', '1984-11-04', '2020-06-25 13:42:45', '2019-12-31', 'Perrin Bridou', 'p.bridou@gmail.com');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

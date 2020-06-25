@@ -1,6 +1,6 @@
 <?php
 
- $dsn = 'mysql:dbname=apptimizer_siba;host=localhost;port=3307;';
+ $dsn = 'mysql:dbname=apptimizer;host=localhost;port=3307';
  $user = 'root';
  $password = '';
 
