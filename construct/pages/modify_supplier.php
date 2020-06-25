@@ -3,13 +3,17 @@
 require '../app/class/functions.php';
 require '../app/class/focusOn.php';
 require '../app/class/form.php';
+require "../app/class/DB_connect.php";
+
 
 $id = htmlspecialchars($_GET['id']);
 
-$query = "SELECT * FROM supplier WHERE supplier_id = ".$id."";
-$result = fetchObject($query);
+$query = "SELECT * FROM supplier WHERE supplier_id = ?";
+$stmt = $pdo->prepare($query);
+$stmt->execute([$id]);
+$result = $stmt->fetchObject();
 
-$supplier = new FocusOn($result[0], $id);
+$supplier = new FocusOn($result, $id);
 
 $form = new Form();
 
