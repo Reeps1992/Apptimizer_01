@@ -5,6 +5,12 @@ require '../app/class/TableHelper.php';
 
 $request = "SELECT * FROM users";
 
+try {
+  $response = fetchObject($request);
+} catch (Exception $e) {
+  echo $e -> getMessage(), "\n";
+}
+
 $table = new Table($response);
 
 require 'html/users.phtml';
