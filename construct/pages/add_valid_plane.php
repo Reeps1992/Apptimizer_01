@@ -2,6 +2,7 @@
 
 require '../app/class/functions.php';
 require '../app/class/FolderHelper.class.php';
+require '../app/class/DB_connect.php';
 include '../app/class/requests.php';
 
 
@@ -13,8 +14,10 @@ $type = strtoupper($_POST['type']);
 $nationalite = strtoupper($_POST['nationalite']);
 $customer_fullname = str_replace("'"," ",$_POST['customer_fullname']);
 
-$query_customer_id = "SELECT customer_id FROM customers WHERE fullname = '$customer_fullname'";
-$result = request_fetch($query_customer_id);
+$query_customer_id = "SELECT customer_id FROM customers WHERE fullname = ?";
+$stmt = $pdo->prepare($query_customer_id);
+$stmt->execute([htmlspecialchars($customer_fullname)]);
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
 $customer_id = $result['customer_id'];
 
 $check_bool;
@@ -32,7 +35,6 @@ foreach ($check_list as $value) {
 }
 
 if($check_bool === true){
-  require '../app/class/DB_connect.php';
   FolderHelper::plane_create_folder($immat);
 
   if($_FILES['plane_img']['size'] !== '0' && $_FILES['plane_img']['size'] <= '100000'){

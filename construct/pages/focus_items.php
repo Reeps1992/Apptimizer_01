@@ -3,13 +3,15 @@
 require '../app/class/functions.php';
 require '../app/class/focusOn.php';
 require '../app/class/item.php';
+require '../app/class/DB_connect.php';
 
-$id = $_GET['id'];
+$id = htmlspecialchars($_GET['id']);
 
-$request = "SELECT * FROM items WHERE item_id = '".$id."'";
-$result = fetchObject($request);
-
-$item = new Item($result[0], $id);
+$query = "SELECT * FROM items WHERE item_id = ?";
+$stmt = $pdo->prepare($query);
+$stmt->execute([$id]);
+$result = $stmt->fetchObject();
+$item = new Item($result, $id);
 
 require 'html/focus_items.phtml';
  ?>

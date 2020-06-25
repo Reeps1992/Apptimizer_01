@@ -2,6 +2,7 @@
 
 require "../app/class/functions.php";
 include '../app/class/requests.php';
+include '../app/class/DB_connect.php';
 
 $table = 'ot';
 
@@ -16,8 +17,10 @@ $check_bool;
 for ($i=0; $i <= $_POST['count_plane'] ;) {
   $tmp_number = 'plane'.$i;
   if(!empty($_POST[$tmp_number])){
-    $query = "SELECT plane_id FROM plane WHERE immat = '$_POST[$tmp_number]'";
-    $result = request_fetch($query);
+    $query = "SELECT plane_id FROM plane WHERE immat = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$_POST[$tmp_number]]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
     array_push($plane_list, $result['plane_id']);
   }
   $i++;
@@ -28,8 +31,10 @@ $plane_list = (implode(',', $plane_list));
 for ($i=0; $i <= $_POST['count_item'] ;) {
   $tmp_number = 'item'.$i;
   if(!empty($_POST[$tmp_number])){
-    $query = "SELECT item_id FROM items WHERE part_number = '$_POST[$tmp_number]'";
-    $result = request_fetch($query);
+    $query = "SELECT plane_id FROM plane WHERE immat = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$_POST[$tmp_number]]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
     array_push($item_list, $result['item_id']);
   }
   $i++;
@@ -50,7 +55,6 @@ foreach ($check_list as $value) {
 }
 
 if($check_bool === true){
-  require '../app/class/DB_connect.php';
   $query = $insert_ot_request;
   $statement = $pdo->prepare($query);
   try {

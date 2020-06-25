@@ -14,7 +14,7 @@
   <hr class="my-4">
   <div>
     <h5 class="mb-2">Appareil(s):</h5>
-      <?php foreach ($customer->getById('*', 'plane', 'customer_id') as $value): ?>
+      <?php foreach ($customer->get_plane_by_id_customer() as $value): ?>
         <p><a href="index.php?p=focus_plane&table=plane&id=<?= $value->plane_id ?>"><?= $value->immat ?></a></p>
       <?php endforeach; ?>
   </div>

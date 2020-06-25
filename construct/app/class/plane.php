@@ -7,9 +7,12 @@ class Plane extends FocusOn
 
   public function getOwner()
   {
-    $query = "SELECT fullname FROM customers WHERE customer_id = ". $this->getDataAbout('customer_id');
-    $result = fetchObject($query);
-    return $result[0]->fullname;
+    include 'DB_connect.php';
+    $query = "SELECT fullname FROM customers WHERE customer_id = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$this->getDataAbout('customer_id')]);
+    $result = $stmt->fetchObject();
+    return $result->fullname;
   }
 
   public function getOtList($id)

@@ -2,15 +2,17 @@
 require '../app/class/functions.php';
 require '../app/class/focusOn.php';
 require '../app/class/ot.php';
+require '../app/class/DB_connect.php';
 
 
-$id = $_GET['id'];
+$id = htmlspecialchars($_GET['id']);
 
-$request = "SELECT * FROM ot WHERE ot_id = '".$id."'";
-$result = fetchObject($request);
+$query = "SELECT * FROM ot WHERE ot_id = ?";
+$stmt = $pdo->prepare($query);
+$stmt->execute([$id]);
+$result = $stmt->fetchObject();
 
-
-$ot = new Ot($result[0], $id);
+$ot = new Ot($result, $id);
 
 require 'html/focus_ot.phtml';
  ?>

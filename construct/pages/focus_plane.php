@@ -2,13 +2,16 @@
 require '../app/class/functions.php';
 require '../app/class/focusOn.php';
 require '../app/class/plane.php';
+require '../app/class/DB_connect.php';
 
-$id = $_GET['id'];
+$id = htmlspecialchars($_GET['id']);
 
-$request = "SELECT * FROM plane WHERE plane_id = '".$id."'";
-$result = fetchObject($request);
+$query = "SELECT * FROM plane WHERE plane_id = ?";
+$stmt = $pdo->prepare($query);
+$stmt->execute([$id]);
+$result = $stmt->fetchObject();
 
-$plane = new Plane($result[0], $id);
+$plane = new Plane($result, $id);
 
 require 'html/focus_plane.phtml';
  ?>

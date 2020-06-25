@@ -6,12 +6,15 @@ class Item extends FocusOn
 {
   public function getSupplier($id)
   {
-    $query = "SELECT company FROM supplier WHERE supplier_id = ".$id."";
-    $supplier = fetchObject($query);
-    if(is_null($supplier)){
-      return "Inconnu";
+    include 'DB_connect.php';
+    $query = "SELECT company FROM supplier WHERE supplier_id = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$id]);
+    $supplier = $stmt->fetchObject();
+    if(is_null($supplier) || $supplier == false){
+      return "Erreur dans la recherche du fournisseur de ce matériel.";
     }else{
-      return $supplier[0]->company;
+      return $supplier->company;
     }
   }
 

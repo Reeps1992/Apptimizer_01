@@ -16,5 +16,4 @@ $insert_supplier_request = "INSERT INTO supplier (company, country, email, phone
 
 $insert_user_request = "INSERT INTO users (firstname, lastname, birthdate, skill_date, fullname) VALUES (?, ?, ?, ?, ?)";
 
-
  ?>

@@ -17,11 +17,6 @@ class FocusOn
     return $this->data->$thing;
   }
 
-  public function getById($thing, $here, $id_col_name)
-  {
-    $query = "SELECT ".$thing." FROM ".$here." WHERE ".$id_col_name." = ".$this->id."";
-    return fetchObject($query);
-  }
 }
 
 ?>
