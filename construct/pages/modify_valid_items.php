@@ -16,10 +16,7 @@ $query_customer_id = "SELECT supplier_id FROM supplier WHERE company = ?";
 $stmt = $pdo->prepare($query_customer_id);
 $stmt->execute([$company]);
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
-var_dump($query_customer_id);
-var_dump($result);
 $supplier_id = $result['supplier_id'];
-var_dump($supplier_id);
 
 $query = "UPDATE items
           SET part_number = ?,
@@ -35,6 +32,6 @@ try {
   echo $e -> getMessage(), "\n";
 }
 
-// header('Location:../public/index.php?p=focus_items&table=items&id='.$id);
+header('Location:../public/index.php?p=focus_items&table=items&id='.$id);
 
  ?>

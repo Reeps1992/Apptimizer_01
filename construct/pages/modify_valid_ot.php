@@ -22,8 +22,10 @@ $check_bool;
 for ($i=0; $i <= $_POST['count_plane'] ;) {
   $tmp_number = 'plane'.$i;
   if(!empty($_POST[$tmp_number])){
-    $query = "SELECT plane_id FROM plane WHERE immat = '$_POST[$tmp_number]'";
-    $result = request_fetch($query);
+    $query = "SELECT plane_id FROM plane WHERE immat = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$_POST[$tmp_number]]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
     array_push($plane_list, $result['plane_id']);
   }
   $i++;
@@ -34,8 +36,10 @@ $plane_list = (implode(',', $plane_list));
 for ($i=0; $i <= $_POST['count_item'] ;) {
   $tmp_number = 'item'.$i;
   if(!empty($_POST[$tmp_number])){
-    $query = "SELECT item_id FROM items WHERE part_number = '$_POST[$tmp_number]'";
-    $result = request_fetch($query);
+    $query = "SELECT item_id FROM items WHERE part_number = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$_POST[$tmp_number]]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
     array_push($item_list, $result['item_id']);
   }
   $i++;
