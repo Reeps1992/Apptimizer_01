@@ -3,7 +3,6 @@
 require '../app/class/functions.php';
 include '../app/class/requests.php';
 
-
 $table = 'supplier';
 
 $company = str_replace("'"," ",$_POST['company']) ?? null;
@@ -30,10 +29,10 @@ foreach ($check_list as $value) {
 
 if($check_bool === true && check_db($table, ['company', $company], ['adress', $adress])){
   require '../app/class/DB_connect.php';
-  $query = "INSERT INTO $table (company, country, email, phone, adress, zip_code, city) VALUES (UPPER(?), UPPER(?), ?, ?, ?, ?, UPPER(?))";
-  $statement = $pdo->prepare($query);
+  $query = $insert_supplier_request;
+  $stmt = $pdo->prepare($query);
   try {
-    $statement->execute([htmlspecialchars($company), htmlspecialchars($country), htmlspecialchars($email), htmlspecialchars($phone), htmlspecialchars($adress), htmlspecialchars($zip_code), htmlspecialchars($city)]);
+    $stmt->execute([htmlspecialchars($company), htmlspecialchars($country), htmlspecialchars($email), htmlspecialchars($phone), htmlspecialchars($adress), htmlspecialchars($zip_code), htmlspecialchars($city)]);
   } catch (Exception $e) {
     echo $e -> getMessage(), "\n";
   }

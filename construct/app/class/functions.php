@@ -35,23 +35,24 @@ function ot_rq_item_list($value)
 
 function request_fetch($e){
     include 'DB_connect.php';
-    $query = $pdo->prepare($e);
-    $query->execute();
+    $stmt = $pdo->prepare($e);
+    $stmt->execute();
     $result = $query->fetch(PDO::FETCH_ASSOC);
     return $result;
 };
 
 function request_fetchAll($e){
   include 'DB_connect.php';
-  $query = $pdo->prepare($e);
-  $query->execute();
+  $stmt = $pdo->prepare($e);
+  $stmt->execute();
   $result = $query->fetchAll(PDO::FETCH_ASSOC);
   return $result;
 };
 
 function fetchObject($e){
   include 'DB_connect.php';
-  $stmt = $pdo->query($e);
+  $stmt = $pdo->prepare($e);
+  $stmt->execute();
   $results = array();
   while ($result = $stmt->fetchObject()){
       $results[] = $result;
